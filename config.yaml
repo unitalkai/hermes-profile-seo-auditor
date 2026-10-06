@@ -2,11 +2,44 @@ display:
   interface: tui
   theme: dark
 
+# --- Model access -----------------------------------------------------------
+# Ships pointing at the Unitalk AI gateway. On Unitalk, set
+# HERMES_CUSTOM_UNITALK_API_KEY in .env and you are done.
+#
+# Any other provider? Delete both blocks below and run:
+#   hermes -p seo-auditor model
+#
+# Hermes works with Anthropic, OpenAI, Google, DeepSeek, xAI, OpenRouter,
+# a local Ollama, or any OpenAI-compatible endpoint — a provider just needs
+# a base_url and a key_env, as `unitalk` demonstrates here.
+#
+# Temperature is deliberately low: this agent does evidence work, not prose.
 model:
-  provider: openai
-  name: gpt-4-turbo
+  default: DeepSeek V4 Pro
+  provider: unitalk
+  base_url: https://llmgateway.unitalk.ai
+  key_env: HERMES_CUSTOM_UNITALK_API_KEY
+  api_mode: chat_completions
   temperature: 0.3
   max_tokens: 8192
+
+providers:
+  unitalk:
+    name: Unitalk AI Gateway
+    base_url: https://llmgateway.unitalk.ai
+    key_env: HERMES_CUSTOM_UNITALK_API_KEY
+    discover_models: true
+    models:
+      # Model ids below are exactly as the gateway returns them from
+      # GET /v1/models — spacing and case included.
+      DeepSeek V4 Pro: {}
+      Claude Sonnet 5: {}
+      Claude Opus 5: {}
+      Kimi K2.6 Instant: {}
+      Qwen 3.7 Plus: {}
+      Mistral-Large-3: {}
+      GLM-5.3 Flash: {}
+      Sonar-Pro: {}
 
 tools:
   enabled:

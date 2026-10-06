@@ -1,17 +1,25 @@
 name: seo-auditor
-version: 1.0.0
+version: 1.1.0
 description: "Continuous SEO auditor — crawls sites, produces impact-ranked action reports"
 hermes_requires: ">=0.12.0"
 author: "Unitalk AI"
 license: "MIT"
 
-# Environment variables the agent needs. Checked against the installer's
-# shell environment and existing .env so installers aren't nagged about
-# keys they already have configured.
+# Language-model access is deliberately NOT listed here.
+#
+# Hermes is provider-agnostic: the model is configured after install, via
+# config.yaml or `hermes model`. This profile ships pointing at the Unitalk AI
+# gateway (see config.yaml), so Unitalk gateway users need no separate model key.
+# Anyone on another provider swaps the provider and brings their own key.
+#
+#   hermes -p seo-auditor model          # interactive provider/model picker
+#
+# Only service-specific keys belong below.
 env_requires:
-  - name: OPENAI_API_KEY
-    description: "OpenAI API key (for model access)"
-    required: true
+  - name: HERMES_CUSTOM_UNITALK_API_KEY
+    description: "Unitalk AI gateway key. Needed only if you keep the shipped Unitalk provider — ignore or replace when using your own model provider."
+    required: false
+    default: ""
   - name: PAGESPEED_API_KEY
     description: "Google PageSpeed Insights API key — free at https://developers.google.com/speed/docs/insights/v5/get-started"
     required: false

@@ -10,17 +10,28 @@ hermes profile install github.com/unitalkai/hermes-profile-seo-auditor --alias
 
 ## Configure
 
+The profile ships pointing at the **Unitalk AI gateway** — no model key needed if you are on Unitalk:
+
 ```bash
 cp ~/.hermes/profiles/seo-auditor/.env.EXAMPLE ~/.hermes/profiles/seo-auditor/.env
+# add HERMES_CUSTOM_UNITALK_API_KEY
 ```
+
+**On another provider?** Hermes is provider-agnostic. Swap the model block, or use the interactive picker:
+
+```bash
+hermes -p seo-auditor model
+```
+
+Any of Anthropic, OpenAI, Google, DeepSeek, xAI, OpenRouter, a local Ollama, or any OpenAI-compatible endpoint works.
 
 | Variable | Required | Purpose |
 |---|---|---|
-| `OPENAI_API_KEY` | yes | Model access |
+| `HERMES_CUSTOM_UNITALK_API_KEY` | only on the Unitalk gateway | Model access via `llmgateway.unitalk.ai` |
 | `PAGESPEED_API_KEY` | no | Google PageSpeed Insights — free key |
 | `SERPAPI_KEY` | no | Keyword/SERP data; falls back to keyless web search |
 
-The agent works without the two optional keys — it loses Core Web Vitals detail and SERP positions, not crawling.
+Note there is **no required key at all**: on Unitalk, or with any provider already configured in your environment, the agent runs as installed. The two optional keys only add Core Web Vitals detail and SERP positions.
 
 ## Use
 
@@ -95,7 +106,7 @@ Distribution-owned files (`SOUL.md`, `skills/`, `mcp.json`, `cron/jobs.json`) ar
 
 ## Version
 
-**1.0.0** — track with `hermes profile info seo-auditor`.
+**1.1.0** — track with `hermes profile info seo-auditor`.
 
 ## License
 
