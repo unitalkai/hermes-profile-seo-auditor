@@ -1,0 +1,35 @@
+display:
+  interface: tui
+  theme: dark
+
+model:
+  provider: openai
+  name: gpt-4-turbo
+  temperature: 0.3
+  max_tokens: 8192
+
+tools:
+  enabled:
+    - terminal
+    - web_search
+    - web_extract
+    - browser_exec
+    - read_file
+    - write_file
+    - patch
+    - search_files
+    - execute_code
+    - delegate_task
+
+web:
+  search_backend: searxng
+  extract_backend: firecrawl
+  keyless_fallback: true
+  keyless_rescue: true
+
+memory:
+  backend: sqlite
+  max_entries: 2000
+
+session:
+  auto_save: true

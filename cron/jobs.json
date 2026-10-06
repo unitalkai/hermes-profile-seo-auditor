@@ -1,0 +1,18 @@
+{
+  "jobs": [
+    {
+      "id": "weekly-site-audit",
+      "name": "Weekly Site Audit",
+      "schedule": "0 8 * * 1",
+      "prompt": "Run a full SEO audit of the configured target site(s). Use the seo-crawl, seo-onpage and seo-report skills in order. Compare indexability findings against the previous week's report in reports/ and flag anything that regressed. Write the report to reports/<domain>-<date>.md and summarize the top action.",
+      "enabled": false
+    },
+    {
+      "id": "monthly-index-coverage",
+      "name": "Monthly Index Coverage",
+      "schedule": "0 8 1 * *",
+      "prompt": "Check index coverage for the configured target site: sample the sitemap for non-200 status codes, noindex headers, canonical chains and orphans. Report only changes and new defects since the last monthly check.",
+      "enabled": false
+    }
+  ]
+}

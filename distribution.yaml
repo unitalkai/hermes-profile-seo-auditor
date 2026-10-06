@@ -1,0 +1,22 @@
+name: seo-auditor
+version: 1.0.0
+description: "Continuous SEO auditor — crawls sites, produces impact-ranked action reports"
+hermes_requires: ">=0.12.0"
+author: "Unitalk AI"
+license: "MIT"
+
+# Environment variables the agent needs. Checked against the installer's
+# shell environment and existing .env so installers aren't nagged about
+# keys they already have configured.
+env_requires:
+  - name: OPENAI_API_KEY
+    description: "OpenAI API key (for model access)"
+    required: true
+  - name: PAGESPEED_API_KEY
+    description: "Google PageSpeed Insights API key — free at https://developers.google.com/speed/docs/insights/v5/get-started"
+    required: false
+    default: ""
+  - name: SERPAPI_KEY
+    description: "SerpAPI key for keyword/SERP analysis (optional; falls back to keyless web search)"
+    required: false
+    default: ""
